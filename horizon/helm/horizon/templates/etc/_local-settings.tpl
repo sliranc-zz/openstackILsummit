@@ -1,7 +1,7 @@
+#######
+########
 import os
-
 from django.utils.translation import ugettext_lazy as _
-
 from openstack_dashboard import exceptions
 
 DEBUG = True
@@ -137,8 +137,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_HOST_PASSWORD = 'top-secret!'
 
 # For multiple regions uncomment this configuration, and add (endpoint, title).
-
-OPENSTACK_KEYSTONE_URL = "http://localhost:5000/v2.0"
+OPENSTACK_KEYSTONE_URL = "http://{{ .Values.keystone.host }}:5000/v2.0"
 OPENSTACK_KEYSTONE_DEFAULT_ROLE = "_member_"
 
 # Disable SSL certificate checks (useful for self-signed certificates):
@@ -534,4 +533,3 @@ COMPRESS_OFFLINE = False
 # so we add this option to change the directory where uploaded files are temporarily
 # stored until they are loaded into Glance.
 FILE_UPLOAD_TEMP_DIR = '/tmp'
-

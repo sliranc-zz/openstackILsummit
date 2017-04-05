@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: horizon-etc
+  labels:
+    system: openstack
+    type: configuration
+    component: horizon
+
+data:
+  local_settings.py: |
+{{ tuple "etc/_local-settings.tpl" . | include "template" | indent 6 }}

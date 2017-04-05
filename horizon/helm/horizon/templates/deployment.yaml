@@ -11,10 +11,17 @@ spec:
       labels:
         app: {{ template "fullname" . }}
     spec:
+      volumes:
+        - name: horizon-etc
+          configMap:
+            name: horizon-etc
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        volumeMounts:
+          - name: horizon-etc
+            mountPath: /etc/openstack-dashboard
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         livenessProbe:
